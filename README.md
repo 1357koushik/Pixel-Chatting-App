@@ -32,7 +32,6 @@ app\_0-3\_armeabi\_v7a\_release.apk is working app 2023
 
 """
 
-<<<<<<< HEAD
 =======
 `app_0-2_armeabi_v7a_release.apk` is old app which is working version from 2020.
 
