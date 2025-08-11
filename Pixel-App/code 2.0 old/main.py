@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+"""
+@author: Moram Koushik
+"""
 from kivy.uix.effectwidget import EffectWidget, HorizontalBlurEffect, VerticalBlurEffect
 from kivyauth.google_auth import initialize_google, login_google
 from kivy.graphics import Color, RoundedRectangle, Rectangle
@@ -9,11 +13,8 @@ from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.behaviors import ButtonBehavior
 from kivymd.uix.textfield import MDTextField
 from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.scrollview import ScrollView
-from kivymd.uix.button import MDIconButton
 from kivy.uix.gridlayout import GridLayout
-from kivymd.uix.behaviors import TouchBehavior
-from kivymd.uix.button import MDFloatingActionButton
+from kivy.uix.scrollview import ScrollView
 from kivymd.uix.button import MDFlatButton
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
@@ -32,7 +33,6 @@ from kivymd.app import MDApp as App
 from android import AndroidService
 from kivy.uix.button import Button
 from os import remove as removefil
-from kivy.clock import mainthread
 from re import search as research
 from jnius import autoclass, cast
 from kivy.uix.image import Image
@@ -48,25 +48,6 @@ from kivy.properties import ObjectProperty
 from uuid import uuid4
 from os import path
 import pymysql
-
-
-dark_m_switch = '''
-MDSwitch:
-    active: True
-    icon_active: "check"
-    icon_active_color: "grey"
-    icon_inactive: "close"
-    icon_inactive_color: "grey"
-'''
-KV_search_button='''
-MDFloatingActionButton:
-    id: searchbutton
-    icon: "magnify"
-    type: "standard"
-    icon_size: "32sp"
-
-'''
-
 
 class myApp(App):
     def build(self):
@@ -121,7 +102,7 @@ class myApp(App):
                 for car in dp:
                     newS=newS+chr(ord(car)-189)
                 return newS
-            def exit_app(vv):
+            def sud(vv):
                 quit()
             def clearw(ma,war):
                 ma.remove_widget(war)
@@ -267,7 +248,7 @@ class myApp(App):
                 global start_main
                 f.clear_widgets()
                 ef=EffectWidget()
-                con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
+                con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
                 cur=con.cursor()
                 cur.execute('SELECT * FROM `'+mem+'`')
                 result=cur.fetchall()
@@ -314,7 +295,7 @@ class myApp(App):
                             cur.execute('INSERT INTO `'+a[0]+'`(oi,mes,ex,exn,tm,id) VALUES (?,?,?,?,?,?)',(a[1],a[2],a[3],a[4],a[5],a[6]))
                             con.commit()
                     con.close()
-                    con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
+                    con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
                     cur=con.cursor()
                     cur.execute("DROP TABLE `"+mem+"`")
                     con.commit()
@@ -336,7 +317,7 @@ class myApp(App):
                 subgrid=GridLayout(rows=1, spacing=0,size_hint_y=None,pos_hint={"center_x":0.5,"center_y":0.97})
                 def propen(opema):
                     f.clear_widgets()
-                    con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
+                    con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
                     cur=con.cursor()
                     cur.execute("SELECT k,s,h,i FROM sm WHERE o = '"+ema+"'")
                     cre=cur.fetchall()
@@ -356,7 +337,7 @@ class myApp(App):
                         urn.bind(on_press=cl)
                         na=Label(text='[size=50][color='+c1+']'+usna+'[/size][/color]',markup=True,pos_hint={"center_x":0.5,"center_y":0.75})
                         biob=Label(text='[size=40][color='+c1+']'+bio+'[/size][/color]',markup=True,pos_hint={"center_x":0.5,"center_y":0.68},halign='left')
-                        cb=MDIconButton(icon="keyboard-return")
+                        cb=Button(background_normal='x.png',background_down='x.png',size_hint=(None,None),size=(163,200))
                         cb.bind(on_press=cl)
                         f.add_widget(pimg)
                         g.add_widget(urn)
@@ -523,10 +504,10 @@ class myApp(App):
                 g=GridLayout(cols=1,rows=1,size_hint_y=None,height=70)
                 seng=GridLayout(cols=5,rows=1,size_hint_y=None,height=80,pos=(0,70))
                 te=TextInput(multiline=True,hint_text="send something here",size_hint=(None,None),height=150,width=Window.width-220)
-                adpic=MDIconButton(icon="attachment",md_bg_color=self.theme_cls.primary_color,icon_size="32sp")
-                sen=MDIconButton(icon="send-outline",md_bg_color=self.theme_cls.primary_color,icon_size="32sp")
+                adpic=it2(background_normal='addpic.png',background_down='addpic.png',border=(0,0,0,0))
+                sen=it2(background_normal='send.png',background_down='send.png',border=(0,0,0,0))
                 def refresh(cloc):
-                    con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
+                    con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
                     cur=con.cursor()
                     cur.execute('SELECT * FROM `'+mem+'`')
                     result=cur.fetchall()
@@ -572,7 +553,7 @@ class myApp(App):
                                     cur.execute('INSERT INTO `'+a[0]+'`(oi,mes,ex,exn,tm,id) VALUES (?,?,?,?,?,?)',(a[1],a[2],a[3],a[4],a[5],a[6]))
                                     con.commit()
                         con.close()
-                        con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
+                        con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
                         cur=con.cursor()
                         cur.execute("DROP TABLE `"+mem+"`")
                         con.commit()
@@ -711,7 +692,7 @@ class myApp(App):
                     if sepros:
                         utc=str(datetime.utcnow().strftime('%I:%M'))
                         id=uuid4().hex
-                        con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
+                        con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
                         cur=con.cursor()
                         if str(type(txt))=="<class 'str'>":
                             cur.execute("INSERT INTO `"+ema+"`(na,oi,message,ex,exn,tm,id) VALUES (%s,%s,%s,%s,%s,%s,%s)",(mem,"i","None",open(txt,"rb").read(),txt.split("/")[-1],utc,id))
@@ -829,7 +810,7 @@ class myApp(App):
                 w=FloatLayout()
                 allg=GridLayout(cols=1)
                 w.add_widget(allg)
-                con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
+                con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
                 cur=con.cursor()
                 cur.execute('SELECT * FROM `'+encrypted+'`')
                 result=cur.fetchall()
@@ -887,7 +868,7 @@ class myApp(App):
                             cur.execute('INSERT INTO `'+a[0]+'`(oi,mes,ex,exn,tm,id) VALUES (?,?,?,?,?,?)',(a[1],a[2],a[3],a[4],a[5],a[6]))
                             con.commit()
                     con.close()
-                    con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
+                    con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
                     cur=con.cursor()
                     cur.execute("DROP TABLE `"+encrypted+"`")
                     con.commit()
@@ -917,7 +898,7 @@ class myApp(App):
                 e1=e4.replace("'])",'')
                 f1=e1.split("', '")
                 list=[]
-                con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
+                con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
                 cur=con.cursor()
                 for a in f1:
                     if str(a)=="([])":
@@ -938,7 +919,7 @@ class myApp(App):
                     for a in prolist:
                         if but.text==a[2]:
                             emai=a[3]
-                    con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
+                    con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
                     cur=con.cursor()
                     cur.execute("SELECT k,s FROM sm WHERE o = '"+emai+"'")
                     resu=cur.fetchall()
@@ -984,273 +965,8 @@ class myApp(App):
                 #         instance.bg_rect.size = instance.size
                 #     # listen to size and position changes
                 #     allg.bind(pos=update_rect, size=update_rect)
-                def shbtn(but):
-                    if but==bchs:
-                        pass
-                    else:
-                        if self.theme_cls.theme_style=="Light":
-                            bchs.background_color=(1,1,1,1)
-                        else:
-                            bchs.background_color=(0,0,0,1)
-                        bchs1.background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058)
-                        bchs2.background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058)
-                        start_main(mainm, encrypted)
-                def shbtn1(but):
-                    if but==bchs1:
-                        pass
-                    else:
-                        gril.clear_widgets()
-                        bchs.background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058)
-                        if self.theme_cls.theme_style=="Light":
-                            bchs1.background_color=(1,1,1,1)
-                        else:
-                            bchs1.background_color=(0,0,0,1)
-                        bchs2.background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058)
-                        size = (400,400)
-                        mask = img.new('L', size, 0)
-                        draw = ImageDraw.Draw(mask)
-                        draw.ellipse((0, 0) + size, fill=255)
-                        con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
-                        cur=con.cursor()
-                        cur.execute("SELECT k,s,h,i FROM sm WHERE o = '"+encrypted+"'")
-                        rese=cur.fetchall()
-                        with open(encrypted+".png","wb") as fil:
-                            fil.write(rese[0][3])
-                        im = img.open(encrypted+".png")
-                        output = ImageOps.fit(im, mask.size, centering=(0.5, 0.5))
-                        output.putalpha(mask)
-                        im=BytesIO()
-                        output.save(im, format='png')
-                        im.seek(0)
-                        im = CoreImage(BytesIO(im.read()), ext='png')
-                        def pushi(selfdf):
-                            @run_thread
-                            def pus():
-                                activity1 = cast('android.app.Activity', PythonActivity.mActivity)
-                                @mainthread
-                                def on_activity_result(request_code, result_code, intent):
-                                    if request_code != RESULT_LOAD_IMAGE:
-                                        return
-                          
-                                    if result_code == Activity.RESULT_CANCELED:
-                                        return
-                          
-                                    if result_code != Activity.RESULT_OK:
-                                        raise NotImplementedError('Unknown result_code "{}"'.format(result_code))
-                          
-                                    selectedImage = intent.getData()
-                                    filePathColumn = [MediaStore_Images_Media_DATA]
-                                    cursor = activity1.getContentResolver().query(selectedImage,
-                                            filePathColumn, None, None, None)
-                                    cursor.moveToFirst()
-                                    columnIndex = cursor.getColumnIndex(filePathColumn[0])
-                                    picturePath = cursor.getString(columnIndex)
-                                    cursor.close()
-                                    selectedUri = intent.getData()
-                                    docStream = activity1.getContentResolver().openInputStream(selectedUri)
-                                    gril.remove_widget(impa)
-                                    self.np=Button(size_hint=(None,None),background_normal="senpicbg.png",background_down="senpicbg.png",width=int(400/(int(img.open("senpicbg.png").size[1])/100)*(int(img.open("senpicbg.png").size[0])/100)),height=400,border=(0,0,0,0))
-                                    gril.add_widget(self.np,index=2)
-                        
-                                    # I get an int array from the stream
-                                    def pca(ad):
-                                        def pca_init(d):
-                                            nam=ch(picturePath.split("/")[-1])
-                                            FileUtils.copyToFile(docStream,io(nam))
-                                            im=img.open(nam)
-                                            if im.size[0]>1080:
-                                                basewidth = 1080
-                                                wpercent = (basewidth/float(im.size[1]))
-                                                hsize = int((float(im.size[0])*float(wpercent)))
-                                                im = im.resize((hsize,basewidth))
-                                                im.save(nam)
-                                            with open("cp.pix","w") as fil:
-                                                fil.write(nam)
-                                            gril.remove_widget(self.np)
-                                            gril.add_widget(Button(size_hint=(None,None),background_normal=nam,background_down=nam,width=int(400/(int(img.open(nam).size[1])/100)*(int(img.open(nam).size[0])/100)),height=400,border=(0,0,0,0)), index=2)
-                                        Clock.schedule_once(pca_init,0.5)
-                                    Clock.schedule_once(pca,0.5)
-                        
-                                act.bind(on_activity_result=on_activity_result)
-                        
-                                intent= Intent()
-                                intent.setAction(Intent.ACTION_PICK)
-                                intent.setData(Uri.parse('content://media/internal/images/media'))
-                                
-                                activity1.startActivityForResult(intent, RESULT_LOAD_IMAGE)
-                            pus()
-                        def upa(bu):
-                            sia.clear_widgets()
-                            lo=MDSpinner(active=True,size_hint=(None,None),size=(96,96))
-                            sia.add_widget(lo)
-                            def upa_e(dfs):
-                                con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
-                                cur=con.cursor()
-                                cur.execute("UPDATE sm SET k = '"+ust.text+"' WHERE o = '"+encrypted+"'")
-                                con.commit()
-                                cur.execute("UPDATE sm SET s = '"+ust1.text+"' WHERE o = '"+encrypted+"'")
-                                con.commit()
-                                cur.execute("UPDATE sm SET h = '"+ust2.text+"' WHERE o = '"+encrypted+"'")
-                                con.commit()
-                                sia.clear_widgets()
-                                sia.add_widget(bu)
-                                bu.icon="content-save-check-outline"
-                            Clock.schedule_once(upa_e, 0.5)
-                            try:
-                                ibi=open(str(open("cp.pix").read()),mode="rb").read()
-                                cur.execute("UPDATE sm SET i = %s WHERE o = %s",(ibi,encrypted))
-                                con.commit()
-                            except:
-                                pass
-                            con.close()
-                        sia=AnchorLayout(anchor_x="right",anchor_y="center",size_hint_y=None,height=115)
-                        si=MDIconButton(icon="content-save-outline",md_bg_color=self.theme_cls.primary_color,icon_size="32sp")
-                        si.bind(on_press=upa)
-                        sia.add_widget(si)
-                        impa=AnchorLayout(anchor_x="left",anchor_y="center",size_hint_y=None,height=405)
-                        imp=Button(size_hint=(None,None),background_normal=encrypted+".png",background_down=encrypted+".png",width=int(400/(int(img.open(encrypted+".png").size[1])/100)*(int(img.open(encrypted+".png").size[0])/100)),height=400,border=(0,0,0,0))
-                        imp.bind(on_press=pushi)
-                        impa.add_widget(imp)
-                        ust=MDTextField(mode="rectangle",hint_text="Username",text=rese[0][0],size_hint_y=None,height=70)
-                        ust1=MDTextField(mode="rectangle",hint_text="Name",text=rese[0][1],size_hint_y=None,height=70)
-                        ust2=MDTextField(mode="rectangle",hint_text="Bio",text=rese[0][2],size_hint_y=None,height=70)
-                        def s_k2(fas):
-                            ust2.focus=True
-                        Clock.schedule_once(s_k2)
-                        def s_k3(fas):
-                            ust1.focus=True
-                        Clock.schedule_once(s_k3)
-                        def s_k4(fas):
-                            ust.focus=True
-                        Clock.schedule_once(s_k4)
-                        def s_k5(fas):
-                            ust.focus=False
-                        Clock.schedule_once(s_k5)
-                        gril.add_widget(sia)
-                        gril.add_widget(ust)
-                        gril.add_widget(impa)
-                        gril.add_widget(ust1)
-                        gril.add_widget(ust2)
-                        gril.add_widget(Label(text=" "))
-                def shbtn2(colour,indicate):
-                    bchs2.background_color=colour
-                    try:
-                        bchs1.background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058)
-                        bchs.background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058)
-                    except:
-                        pass
-                    gril.clear_widgets()
-                    dsl=GridLayout(cols=7)
-                    if indicate==True:
-                        self.darkmodeswitch=Builder.load_string(dark_m_switch)
-                    else:
-                        self.darkmodeswitch=MDSwitch(icon_active="check",icon_active_color="white",icon_inactive="close",icon_inactive_color="grey")
-                    def dsfa(ba,idk):
-                        self.cdl(ba)
-                    self.darkmodeswitch.bind(active=dsfa)
-                    dsl.add_widget(MDLabel(text="Dark Mode  ",size_hint=(None,None),size=(300,200)))
-                    dsl.add_widget(Label(text=" "))
-                    dsl.add_widget(Label(text=" "))
-                    dsl.add_widget(Label(text=" "))
-                    dsl.add_widget(Label(text=" "))
-                    dsl.add_widget(self.darkmodeswitch)
-                    dsl.add_widget(Label(text=" "))
-                    gril.add_widget(dsl)
-                    gril.add_widget(MDFlatButton(text=" "))
-                    gril.add_widget(MDFlatButton(text=" "))
-                    repas=MDFlatButton(text="Reset password")
-                    def repasf(asf):
-                        def repa(sad):
-                            op=self.to
-                            np=self.tn
-                            con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
-                            cur=con.cursor()
-                            cur.execute("SELECT u from sm WHERE o ='"+encrypted+"'")
-                            rp=cur.fetchall()[0][0]
-                            if str(op.text)==str(rp):
-                                cur.execute("UPDATE sm SET u='"+np.text+"' WHERE o ='"+encrypted+"'")
-                                con.commit()
-                                con.close()
-                                rsd.dismiss()
-                                def cap(Ds):
-                                    rb.dismiss()
-                                ca=MDFlatButton(text="OK", text_color=self.theme_cls.primary_color)
-                                ca.bind(on_release=cap)
-                                rb=MDDialog(text="password changed successfully",buttons=[ca])
-                                rb.open()
-                            else:
-                                rsd.dismiss()
-                                def cap(Ds):
-                                    rb.dismiss()
-                                ca=MDFlatButton(text="OK", text_color=self.theme_cls.primary_color)
-                                ca.bind(on_release=cap)
-                                rb=MDDialog(text="The old password doesn't match the real one",buttons=[ca])
-                                rb.open()
-                        rec=MDFlatButton(text="CANCEL", text_color=self.theme_cls.primary_color)
-                        reo=MDFlatButton(text="OK", text_color=self.theme_cls.primary_color)
-                        rec.bind(on_release=self.reca)
-                        reo.bind(on_release=repa)
-                        Content=BoxLayout(orientation="vertical",spacing="12dp",size_hint_y=None,height="120dp")
-                        self.to=MDTextField(hint_text="Old password",required=True,helper_text_mode="on_error",helper_text="Enter password")
-                        self.tn=MDTextField(hint_text="New password",required=True,helper_text_mode="on_error",helper_text="Enter password")
-                        Content.add_widget(self.to)
-                        Content.add_widget(self.tn)
-                        rsd=MDDialog(title="Reset password",type="custom",content_cls=Content,buttons=[rec,reo])
-                        self.rsd=rsd
-                        rsd.open()
-                        
-                    repas.bind(on_release=repasf)
-                    gril.add_widget(repas)
-                sall1=GridLayout(cols=3,size_hint_y=None, height=200)
-                sall6=GridLayout(cols=3,size_hint_y=None, height=200)
-                sall3=AnchorLayout(anchor_x='left', anchor_y='center')
-                bch=Button(background_normal="chat.png",size_hint=(None,None),background_down="chat.png",height=100,width=92,border=(0,0,0,0))
-                sall4=AnchorLayout(anchor_x='center', anchor_y='center')
-                bch1=Button(background_normal="profile.png",size_hint=(None,None),background_down="profile.png",height=100,width=100,border=(0,0,0,0))
-                sall5=AnchorLayout(anchor_x='right', anchor_y='center')
-                bch2=MDIconButton(icon="cog-outline",icon_size="40sp",theme_icon_color="Custom",icon_color="#c3c3c3")
-                sall2=GridLayout(cols=3,size_hint_y=None,spacing=0,height=10)
-                sall7=GridLayout(cols=2,size_hint_y=None,spacing=50,height=150)
-                with sall6.canvas.before:
-                    Color(0.0, 0.5790408525754885, 0.7637655417406749, 0.7140319715808171)
-                    sall6.bg_rect = Rectangle(pos=sall6.pos, size=sall6.size)
-                    def update_rect(instance, value):
-                        instance.bg_rect.pos = instance.pos
-                        instance.bg_rect.size = instance.size
-                    # listen to size and position changes
-                    sall6.bind(pos=update_rect, size=update_rect)
-                with sall7.canvas.before:
-                    Color(0.0, 0.5790408525754885, 0.7637655417406749, 0.7140319715808171)
-                    sall7.bg_rect = Rectangle(pos=sall7.pos, size=sall7.size)
-                    def update_rect(instance, value):
-                        instance.bg_rect.pos = instance.pos
-                        instance.bg_rect.size = instance.size
-                    # listen to size and position changes
-                    sall7.bind(pos=update_rect, size=update_rect)
-                def shbtn2_init(but):
-                    colour=(0,0,0,1)
-                    indicate=True
-                    try:
-                        if self.theme_cls.theme_style=="Light":
-                            colour=(1,1,1,1)
-                            indicate=False
-                    except:
-                        pass
-                    shbtn2(colour,indicate)
-                if self.theme_cls.theme_style=="Light":
-                    bchs=Button(background_normal="bc.png",background_down="bc.png",background_color=(1,1,1,1))
-                    bchs1=Button(background_normal="bc.png",background_down="bc.png",background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058))
-                    bchs2=Button(background_normal="bc.png",background_down="bc.png",background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058))
-                else:
-                    bchs=Button(background_normal="bc.png",background_down="bc.png",background_color=(0,0,0,1))
-                    bchs1=Button(background_normal="bc.png",background_down="bc.png",background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058))
-                    bchs2=Button(background_normal="bc.png",background_down="bc.png",background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058))
-                bch.bind(on_press=shbtn)
-                bch1.bind(on_press=shbtn1)
-                bch2.bind(on_press=shbtn2_init)
-                # if self.theme_cls.theme_style=="Light":
-                class ib(MDFloatingActionButton, TouchBehavior):
-                    def on_release(self):
+                class ib(ButtonBehavior, Image):
+                    def on_press(self):
                         try:
                             sall7.clear_widgets()
                         except:
@@ -1261,7 +977,7 @@ class myApp(App):
                         self.inte=TextInput(multiline=False,size_hint=(change3,0.04),padding_y=40)
                         self.inte.bind(on_text_validate=self.sr)
                         sbba=AnchorLayout(anchor_x="center",anchor_y="center",size_hint=(None,None),size=(150,150))
-                        sbb=MDFloatingActionButton(icon="keyboard-return",type="small")
+                        sbb=Button(background_normal="x1.png",background_down="x1.png",border=(0,0,0,0), size_hint=(None,None),size=(51,43))
                         sbb.bind(on_press=self.rem)
                         sbba.add_widget(sbb)
                         sall7.add_widget(sbba)
@@ -1274,7 +990,7 @@ class myApp(App):
                         gril.clear_widgets()
                         gril.add_widget(MDSpinner(active=True,size_hint=(None,None),size=(96,96)))
                         def sr_int(cvf):
-                            con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
+                            con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
                             cur=con.cursor()
                             cur.execute("SELECT o,s,k,i FROM sm WHERE k = '"+btn.text+"'")
                             r=cur.fetchall()
@@ -1282,12 +998,9 @@ class myApp(App):
                             if r==[]:
                                 a=[]
                             else:
-                                try:
-                                    with open(str(r[0][0])+".png","wb") as fil:
-                                        fil.write(r[0][3])
-                                    a=[str(r[0][0])+".png",str(r[0][2]),str(r[0][1]),str(r[0][0])]
-                                except:
-                                    a=[]
+                                with open(str(r[0][0])+".png","wb") as fil:
+                                    fil.write(r[0][3])
+                                a=[str(r[0][0])+".png",str(r[0][2]),str(r[0][1]),str(r[0][0])]
                             if a==[]:
                                 size = (change4,change4)
                                 mask = img.new('L', size, 0)
@@ -1353,17 +1066,276 @@ class myApp(App):
                                 gril.clear_widgets()
                                 gril.add_widget(subgrid)
                         Clock.schedule_once(sr_int, 0.3)
+                def shbtn(but):
+                    if but==bchs:
+                        pass
+                    else:
+                        if self.theme_cls.theme_style=="Light":
+                            bchs.background_color=(1,1,1,1)
+                        else:
+                            bchs.background_color=(0,0,0,1)
+                        bchs1.background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058)
+                        bchs2.background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058)
+                        start_main(mainm, encrypted)
+                def shbtn1(but):
+                    if but==bchs1:
+                        pass
+                    else:
+                        gril.clear_widgets()
+                        bchs.background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058)
+                        if self.theme_cls.theme_style=="Light":
+                            bchs1.background_color=(1,1,1,1)
+                        else:
+                            bchs1.background_color=(0,0,0,1)
+                        bchs2.background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058)
+                        size = (400,400)
+                        mask = img.new('L', size, 0)
+                        draw = ImageDraw.Draw(mask)
+                        draw.ellipse((0, 0) + size, fill=255)
+                        con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
+                        cur=con.cursor()
+                        cur.execute("SELECT k,s,h,i FROM sm WHERE o = '"+encrypted+"'")
+                        rese=cur.fetchall()
+                        with open(encrypted+".png","wb") as fil:
+                            fil.write(rese[0][3])
+                        im = img.open(encrypted+".png")
+                        output = ImageOps.fit(im, mask.size, centering=(0.5, 0.5))
+                        output.putalpha(mask)
+                        im=BytesIO()
+                        output.save(im, format='png')
+                        im.seek(0)
+                        im = CoreImage(BytesIO(im.read()), ext='png')
+                        def pushi(selfdf):
+                            @run_thread
+                            def pus():
+                                activity1 = cast('android.app.Activity', PythonActivity.mActivity)
+                                def on_activity_result(request_code, result_code, intent):
+                                    if request_code != RESULT_LOAD_IMAGE:
+                                        return
+                          
+                                    if result_code == Activity.RESULT_CANCELED:
+                                        return
+                          
+                                    if result_code != Activity.RESULT_OK:
+                                        raise NotImplementedError('Unknown result_code "{}"'.format(result_code))
+                          
+                                    selectedImage = intent.getData()
+                                    filePathColumn = [MediaStore_Images_Media_DATA]
+                                    cursor = activity1.getContentResolver().query(selectedImage,
+                                            filePathColumn, None, None, None)
+                                    cursor.moveToFirst()
+                                    columnIndex = cursor.getColumnIndex(filePathColumn[0])
+                                    picturePath = cursor.getString(columnIndex)
+                                    cursor.close()
+                                    selectedUri = intent.getData()
+                                    docStream = activity1.getContentResolver().openInputStream(selectedUri)
+                                    gril.remove_widget(impa)
+                                    self.np=Button(size_hint=(None,None),background_normal="senpicbg.png",background_down="senpicbg.png",width=int(400/(int(img.open("senpicbg.png").size[1])/100)*(int(img.open("senpicbg.png").size[0])/100)),height=400,border=(0,0,0,0))
+                                    gril.add_widget(self.np,index=2)
+                        
+                                    # I get an int array from the stream
+                                    def pca(ad):
+                                        def pca_init(d):
+                                            nam=ch(picturePath.split("/")[-1])
+                                            FileUtils.copyToFile(docStream,io(nam))
+                                            im=img.open(nam)
+                                            if im.size[0]>1080:
+                                                basewidth = 1080
+                                                wpercent = (basewidth/float(im.size[1]))
+                                                hsize = int((float(im.size[0])*float(wpercent)))
+                                                im = im.resize((hsize,basewidth))
+                                                im.save(nam)
+                                            with open("cp.pix","w") as fil:
+                                                fil.write(nam)
+                                            gril.remove_widget(self.np)
+                                            gril.add_widget(Button(size_hint=(None,None),background_normal=nam,background_down=nam,width=int(400/(int(img.open(nam).size[1])/100)*(int(img.open(nam).size[0])/100)),height=400,border=(0,0,0,0)), index=2)
+                                        Clock.schedule_once(pca_init,0.5)
+                                    Clock.schedule_once(pca,0.5)
+                        
+                                act.bind(on_activity_result=on_activity_result)
+                        
+                                intent= Intent()
+                                intent.setAction(Intent.ACTION_PICK)
+                                intent.setData(Uri.parse('content://media/internal/images/media'))
+                                
+                                activity1.startActivityForResult(intent, RESULT_LOAD_IMAGE)
+                            pus()
+                        def upa(bu):
+                            sia.clear_widgets()
+                            lo=MDSpinner(active=True,size_hint=(None,None),size=(96,96))
+                            sia.add_widget(lo)
+                            def upa_e(dfs):
+                                con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
+                                cur=con.cursor()
+                                cur.execute("UPDATE sm SET k = '"+ust.text+"' WHERE o = '"+encrypted+"'")
+                                con.commit()
+                                cur.execute("UPDATE sm SET s = '"+ust1.text+"' WHERE o = '"+encrypted+"'")
+                                con.commit()
+                                cur.execute("UPDATE sm SET h = '"+ust2.text+"' WHERE o = '"+encrypted+"'")
+                                con.commit()
+                                sia.clear_widgets()
+                                sia.add_widget(bu)
+                                bu.background_normal="saves.png"
+                                bu.background_down="saves.png"
+                            Clock.schedule_once(upa_e, 0.5)
+                            try:
+                                ibi=open(str(open("cp.pix").read()),mode="rb").read()
+                                cur.execute("UPDATE sm SET i = %s WHERE o = %s",(ibi,encrypted))
+                                con.commit()
+                            except:
+                                pass
+                            con.close()
+                        sia=AnchorLayout(anchor_x="right",anchor_y="center",size_hint_y=None,height=115)
+                        si=Button(background_normal="save.png",background_down="save.png",border=(0,0,0,0),size_hint=(None,None),size=(96,96))
+                        si.bind(on_press=upa)
+                        sia.add_widget(si)
+                        impa=AnchorLayout(anchor_x="left",anchor_y="center",size_hint_y=None,height=405)
+                        imp=Button(size_hint=(None,None),background_normal=encrypted+".png",background_down=encrypted+".png",width=int(400/(int(img.open(encrypted+".png").size[1])/100)*(int(img.open(encrypted+".png").size[0])/100)),height=400,border=(0,0,0,0))
+                        imp.bind(on_press=pushi)
+                        impa.add_widget(imp)
+                        ust=MDTextField(mode="rectangle",hint_text="Username",text=rese[0][0],size_hint_y=None,height=70)
+                        ust1=MDTextField(mode="rectangle",hint_text="Name",text=rese[0][1],size_hint_y=None,height=70)
+                        ust2=MDTextField(mode="rectangle",hint_text="Bio",text=rese[0][2],size_hint_y=None,height=70)
+                        def s_k2(fas):
+                            ust2.focus=True
+                        Clock.schedule_once(s_k2)
+                        def s_k3(fas):
+                            ust1.focus=True
+                        Clock.schedule_once(s_k3)
+                        def s_k4(fas):
+                            ust.focus=True
+                        Clock.schedule_once(s_k4)
+                        def s_k5(fas):
+                            ust.focus=False
+                        Clock.schedule_once(s_k5)
+                        gril.add_widget(sia)
+                        gril.add_widget(ust)
+                        gril.add_widget(impa)
+                        gril.add_widget(ust1)
+                        gril.add_widget(ust2)
+                        gril.add_widget(Label(text=" "))
+                def shbtn2(but):
+                    if self.theme_cls.theme_style=="Light":
+                        bchs2.background_color=(1,1,1,1)
+                    else:
+                        bchs2.background_color=(0,0,0,1)
+                    bchs1.background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058)
+                    bchs.background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058)
+                    gril.clear_widgets()
+                    dsl=GridLayout(cols=7)
+                    dl=False
+                    if cp_(open("mode.dl",mode="r").read())=="Dark":
+                        dl=True
+                    ds=MDSwitch(active=dl)
+                    def dsfa(ba):
+                        self.cdl(ba)
+                    ds.bind(on_release=dsfa)
+                    dsl.add_widget(MDLabel(text="Dark Mode  ",size_hint=(None,None),size=(300,200)))
+                    dsl.add_widget(Label(text=" "))
+                    dsl.add_widget(Label(text=" "))
+                    dsl.add_widget(Label(text=" "))
+                    dsl.add_widget(Label(text=" "))
+                    dsl.add_widget(ds)
+                    dsl.add_widget(Label(text=" "))
+                    gril.add_widget(dsl)
+                    gril.add_widget(MDFlatButton(text=" "))
+                    gril.add_widget(MDFlatButton(text=" "))
+                    adp=MDFlatButton(text="Delete Account permanently")
+                    def adpm(adsa):
+                        bca=MDFlatButton(text="CANCEL", text_color=self.theme_cls.primary_color)
+                        bca.bind(on_release=self.bcaf)
+                        self.maii=gril
+                        self.cond=MDDialog(title="Delete Account",text='Message "koushik" to delete account',buttons=[bca])
+                        self.cond.open()
+                    adp.bind(on_press=adpm)
+                    gril.add_widget(adp)
+                    repas=MDFlatButton(text="Reset password")
+                    def repasf(asf):
+                        def repa(sad):
+                            op=self.to
+                            np=self.tn
+                            con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
+                            cur=con.cursor()
+                            cur.execute("SELECT u from sm WHERE o ='"+encrypted+"'")
+                            rp=cur.fetchall()[0][0]
+                            if str(op.text)==str(rp):
+                                cur.execute("UPDATE sm SET u='"+np.text+"' WHERE o ='"+encrypted+"'")
+                                con.commit()
+                                con.close()
+                                rsd.dismiss()
+                                def cap(Ds):
+                                    rb.dismiss()
+                                ca=MDFlatButton(text="OK", text_color=self.theme_cls.primary_color)
+                                ca.bind(on_release=cap)
+                                rb=MDDialog(text="password changed successfully",buttons=[ca])
+                                rb.open()
+                            else:
+                                rsd.dismiss()
+                                def cap(Ds):
+                                    rb.dismiss()
+                                ca=MDFlatButton(text="OK", text_color=self.theme_cls.primary_color)
+                                ca.bind(on_release=cap)
+                                rb=MDDialog(text="The old password doesn't match the real one",buttons=[ca])
+                                rb.open()
+                        rec=MDFlatButton(text="CANCEL", text_color=self.theme_cls.primary_color)
+                        reo=MDFlatButton(text="OK", text_color=self.theme_cls.primary_color)
+                        rec.bind(on_release=self.reca)
+                        reo.bind(on_release=repa)
+                        Content=BoxLayout(orientation="vertical",spacing="12dp",size_hint_y=None,height="120dp")
+                        self.to=MDTextField(hint_text="Old password",required=True,helper_text_mode="on_error",helper_text="Enter password")
+                        self.tn=MDTextField(hint_text="New password",required=True,helper_text_mode="on_error",helper_text="Enter password")
+                        Content.add_widget(self.to)
+                        Content.add_widget(self.tn)
+                        rsd=MDDialog(title="Reset password",type="custom",content_cls=Content,buttons=[rec,reo])
+                        self.rsd=rsd
+                        rsd.open()
+                        
+                    repas.bind(on_release=repasf)
+                    gril.add_widget(repas)
+                sall1=GridLayout(cols=3,size_hint_y=None, height=200)
+                sall6=GridLayout(cols=3,size_hint_y=None, height=200)
+                sall3=AnchorLayout(anchor_x='left', anchor_y='center')
+                bch=Button(background_normal="chat.png",size_hint=(None,None),background_down="chat.png",height=100,width=92,border=(0,0,0,0))
+                sall4=AnchorLayout(anchor_x='center', anchor_y='center')
+                bch1=Button(background_normal="profile.png",size_hint=(None,None),background_down="profile.png",height=100,width=100,border=(0,0,0,0))
+                sall5=AnchorLayout(anchor_x='right', anchor_y='center')
+                bch2=Button(background_normal="settings.png",size_hint=(None,None),background_down="settings.png",height=100,width=100,border=(0,0,0,0))
+                sall2=GridLayout(cols=3,size_hint_y=None,spacing=0,height=10)
+                sall7=GridLayout(cols=2,size_hint_y=None,spacing=50,height=150)
+                with sall6.canvas.before:
+                    Color(0.0, 0.5790408525754885, 0.7637655417406749, 0.7140319715808171)
+                    sall6.bg_rect = Rectangle(pos=sall6.pos, size=sall6.size)
+                    def update_rect(instance, value):
+                        instance.bg_rect.pos = instance.pos
+                        instance.bg_rect.size = instance.size
+                    # listen to size and position changes
+                    sall6.bind(pos=update_rect, size=update_rect)
+                with sall7.canvas.before:
+                    Color(0.0, 0.5790408525754885, 0.7637655417406749, 0.7140319715808171)
+                    sall7.bg_rect = Rectangle(pos=sall7.pos, size=sall7.size)
+                    def update_rect(instance, value):
+                        instance.bg_rect.pos = instance.pos
+                        instance.bg_rect.size = instance.size
+                    # listen to size and position changes
+                    sall7.bind(pos=update_rect, size=update_rect)
+                if self.theme_cls.theme_style=="Light":
+                    bchs=Button(background_normal="bc.png",background_down="bc.png",background_color=(1,1,1,1))
+                    bchs1=Button(background_normal="bc.png",background_down="bc.png",background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058))
+                    bchs2=Button(background_normal="bc.png",background_down="bc.png",background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058))
+                else:
+                    bchs=Button(background_normal="bc.png",background_down="bc.png",background_color=(0,0,0,1))
+                    bchs1=Button(background_normal="bc.png",background_down="bc.png",background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058))
+                    bchs2=Button(background_normal="bc.png",background_down="bc.png",background_color=(0.0, 0.6571936056838366, 0.8241563055062167, 0.8235294117647058))
+                bch.bind(on_press=shbtn)
+                bch1.bind(on_press=shbtn1)
+                bch2.bind(on_press=shbtn2)
                 sall8=AnchorLayout(anchor_x="right",anchor_y="center")
                 if self.theme_cls.theme_style=="Light":
-                    bu=ib(icon="magnify",type="small")
+                    bu=ib(source='search.png',size_hint=(None,None),allow_stretch=True,size=(150,150))
                 else:
-                    bu=ib(icon="magnify",type="small")
+                    bu=ib(source='searchd.png',size_hint=(None,None),allow_stretch=True,size=(150,150))
+                ml=MDLabel(text="[size=60][b][color="+c1+"]"+cp_("čĦĵĢĩ")+"[/color][/size][/b]",theme_text_color="Secondary",markup=True,padding_y=30)
                 sall8.add_widget(bu)
-                ml=GridLayout(cols=2)
-                ml1=Image(source="icon.png")
-                ml.add_widget(ml1)
-                ml2=Label(text="[color=000000][b][size=32sp]Pixel[/size][/b][/color]",markup = True,halign='left',valign='middle',text_size=(350,350))
-                ml.add_widget(ml2)
                 sall7.add_widget(ml)
                 sall7.add_widget(sall8)
                 sall3.add_widget(bch)
@@ -1431,12 +1403,12 @@ class myApp(App):
             def logincf(m,a,b,e,ani,abtn,mainr=None):
                     conc=9
                     try:
-                        con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
+                        con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
                         conc=0
                     except:
                         m.clear_widgets()
                         m.add_widget(Label(text="[size=50]Check your internet[/size]",markup=True, pos=(230,250)))
-                        Clock.schedule_once(exit_app, 1)
+                        Clock.schedule_once(sud, 1)
                     if conc==0:
                         cor=con.cursor()
                         cheklg=0
@@ -1448,6 +1420,7 @@ class myApp(App):
                                 con.close()
                                 with open(".1.pix",mode="w") as fil:
                                     fil.write(cp(a)+"@pix@"+cp(b))
+                                con.close()
                                 cheklg=1
                             else:
                                 con.close()
@@ -1493,7 +1466,7 @@ class myApp(App):
                             tem=tem.replace("_","c")
                             if tem.isalnum():
                                 try:
-                                    con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
+                                    con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
                                     cor=con.cursor()
                                     tempch=9
                                 except:
@@ -1502,7 +1475,7 @@ class myApp(App):
                                     tempch=0
                                     main.clear_widgets()
                                     main.add_widget(Label(text="[size=50]Check your internet[/size]",markup=True, pos=(230,250)))
-                                    Clock.schedule_once(exit_app, 1)
+                                    Clock.schedule_once(sud, 1)
                                 if tempch==9:
                                     try:
                                         cor.execute("SELECT o FROM sm WHERE k = '"+em+"'")
@@ -1542,7 +1515,7 @@ class myApp(App):
                 tc=tc.replace("_","c")
                 tc=tc.replace(" ","$")
                 chal=0
-                if c=="" or d=="" or f=="" or g=="":
+                if c=="":
                     smai.remove_widget(i)
                     neb= MDFillRoundFlatButton(text="Create",md_bg_color=self.theme_cls.bg_darkest,pos_hint={"center_x":0.5,"center_y":0.15}, size_hint=(0.25, 0.07))
                     def nbp(zsd):
@@ -1550,6 +1523,30 @@ class myApp(App):
                     neb.bind(on_release=nbp)
                     smai.add_widget(neb)
                     h.text='[size=30]All fields are mandatory[/size]'
+                elif d=="":
+                    smai.remove_widget(i)
+                    neb= MDFillRoundFlatButton(text="Create",md_bg_color=self.theme_cls.bg_darkest,pos_hint={"center_x":0.5,"center_y":0.15}, size_hint=(0.25, 0.07))
+                    def nbp(zsd):
+                        signu(b,lgna)
+                    neb.bind(on_release=nbp)
+                    smai.add_widget(neb)
+                    h.text='[size=30]All fields are mandatory[/size]'
+                elif f=="":
+                    h.text='[size=30]All fields are mandatory[/size]'
+                    smai.remove_widget(i)
+                    neb= MDFillRoundFlatButton(text="Create",md_bg_color=self.theme_cls.bg_darkest,pos_hint={"center_x":0.5,"center_y":0.15}, size_hint=(0.25, 0.07))
+                    def nbp(zsd):
+                        signu(b,lgna)
+                    neb.bind(on_release=nbp)
+                    smai.add_widget(neb)
+                elif g=="":
+                    h.text='[size=30]All fields are mandatory[/size]'
+                    smai.remove_widget(i)
+                    neb= MDFillRoundFlatButton(text="Create",md_bg_color=self.theme_cls.bg_darkest,pos_hint={"center_x":0.5,"center_y":0.15}, size_hint=(0.25, 0.07))
+                    def nbp(zsd):
+                        signu(b,lgna)
+                    neb.bind(on_release=nbp)
+                    smai.add_widget(neb)
                 elif not tc.isalnum():
                     h.text='[color=ff0000][size=30]Username contains only number, alphabets, (.), (_)[/size][/color]'
                     smai.remove_widget(i)
@@ -1569,13 +1566,13 @@ class myApp(App):
                 else:
                     tc=0
                     try:
-                        con=pymysql.connect(user="pixusers",database='app',host="43.204.227.181",password="pix123")
+                        con=pymysql.connect(db="s1494080_942a02c15c3b",host="eu3.falixserver.net",password="A7AmZf+Z!Rq86Gc=ylvJlPHm",port=3306,user="u1494080_s3bEVYwpg6")
                     except Exception as e:
                         print(e)
                         tc=1
                         a.clear_widgets()
                         a.add_widget(Label(text="[size=50]Check your internet[/size]",markup=True, pos=(230,250)))
-                        Clock.schedule_once(exit_app, 1)
+                        Clock.schedule_once(sud, 1)
                         tc=1
                     if tc==0:
                         try:
@@ -1622,11 +1619,10 @@ class myApp(App):
             except:
                 wel=MDLabel(text="[size="+change1+"]L o g i n[/size]", markup=True, pos_hint={"center_x":0.85,"center_y":0.9})
                 emt = MDTextField(mode="rectangle",hint_text="Username",size_hint=(change3,0.03),keyboard_suggestions=True, pos_hint={"center_x":0.5,"center_y":0.75}, multiline=False)
-                sp=MDIconButton(icon="eye-outline",size_hint=(None,None),size=(50,50),pos_hint={"center_x":0.93,"center_y":0.59})
+                sp=Button(background_normal="show.png",background_down="show.png",size_hint=(None,None),border=(0,0,0,0),size=(50,50),pos_hint={"center_x":0.93,"center_y":0.59})
                 sp.bind(on_press=self.dsp)
                 self.pat = MDTextField(mode="rectangle",size_hint=(change3,0.03), hint_text="password",password=True, pos_hint={"center_x":0.5,"center_y":0.6}, multiline=False)
                 su = MDFlatButton(text="Don't have an account Sign up here", text_color=(0.7843137254901961, 0.7843137254901961, 0.0, 1), pos_hint={"center_x":0.5, "center_y":0.1})
-                @mainthread
                 def signu(emil,logna=""):
                     mainm.clear_widgets()
                     smain = FloatLayout()
@@ -1678,7 +1674,7 @@ class myApp(App):
                     nnt = MDTextField(mode="rectangle",text=logna,size_hint=(0.6,0.03), pos_hint={"center_x":0.5,"center_y":0.6}, multiline=False,hint_text="Name")
                     self.crti = MDTextField(mode="rectangle",size_hint=(0.6,0.03), pos_hint={"center_x":0.5,"center_y":0.5}, multiline=False, hint_text="Password",password=True)
                     tempb=Button(text="g", pos=(10000, 10000))
-                    sp=MDIconButton(icon="keyboard-return")
+                    sp=Button(background_normal="show.png",background_down="show.png",size_hint=(None,None),border=(0,0,0,0),size=(50,50),pos_hint={"center_x":0.93,"center_y":0.5})
                     sp.bind(on_press=self.dsp2)
                     cbtn = MDFillRoundFlatButton(text="Create",md_bg_color=self.theme_cls.bg_darkest,pos_hint={"center_x":0.5,"center_y":0.15}, size_hint=(0.25, 0.07))
                     e=MDLabel(text=" ",markup=True, pos_hint={"center_x":0.7,"center_y":0.01})
@@ -1708,18 +1704,11 @@ class myApp(App):
                 def glogin_init(af):
                     login_google()
                 su.bind(on_release=glogin_init)
-                @mainthread
-                def closedialog(a):
-                    self.dialog.dismiss()
-                @mainthread
                 def er():
-                    c=MDFlatButton(text="Close")
-                    c.bind(on_release=closedialog)
-                    self.dialog = MDDialog(text="Error while signing using GOOGLE",buttons=[c])
-                    self.dialog.open()
+                    pass
                 def gln(ema,na, ur):
                     signu(na,logna=ema)
-                initialize_google(gln,er,"379080696429-v9m7749if6n3a62ms5uemrmk9equm5cp.apps.googleusercontent.com")
+                initialize_google(gln,er,"943553214976-bbrvpqgfkgohaegtnkttui0diid7121p.apps.googleusercontent.com")
                 lbtn = MDFillRoundFlatButton(text="Continue",pos_hint={"center_x":0.5, "center_y":0.3}, size_hint=(0.3,0.08),md_bg_color=self.theme_cls.bg_darkest)
                 def _loginc(du):
                     main.remove_widget(lbtn)
@@ -1777,17 +1766,21 @@ class myApp(App):
     def reca(self,but):
         self.rsd.dismiss()
     def dsp(self,but):
-        if but.icon=="eye-outline":
+        if but.background_down=="show.png":
             self.pat.password=False
-            but.icon="eye-off-outline"
+            but.background_down="hide.png"
+            but.background_normal="hide.png"
         else:
             self.pat.password=True
-            but.icon="eye-outline"
+            but.background_down="show.png"
+            but.background_normal="show.png"
     def dsp2(self,but):
-        if but.icon=="eye-outline":
+        if but.background_down=="show.png":
             self.crti.password=False
-            but.icon="eye-off-outline"
+            but.background_down="hide.png"
+            but.background_normal="hide.png"
         else:
             self.crti.password=True
-            but.icon="eye-outline"
+            but.background_down="show.png"
+            but.background_normal="show.png"
 myApp().run()
