@@ -1,12 +1,10 @@
 # Pixel-Chatting-App
 
-<<<<<<< HEAD
 This is for my social media app, created using Python and Java in 9th grade. (Now I want to open-source it.)
 main.py is the old version, main new.py is the updated version, working in 2025.
 =======
 This is for my social media app created using python and java when i was at 9th grade.(Now i want to open source it)
 main.py is old version main new.py is updated version working 2025.
->>>>>>> db8f4316dda2842ab7beb6086fa844c38029c55e
 ---
 
 
