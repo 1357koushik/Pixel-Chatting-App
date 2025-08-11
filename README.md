@@ -39,4 +39,3 @@ app\_0-3\_armeabi\_v7a\_release.apk is working app 2023
 `app_0-3_armeabi_v7a_release.apk` is working app 2023.
 
 `app-0.1-arm64-v8a_armeabi-v7a-debug%20(1).apk` is debug working app 2024.
->>>>>>> db8f4316dda2842ab7beb6086fa844c38029c55e
