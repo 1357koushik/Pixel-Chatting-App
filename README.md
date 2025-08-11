@@ -13,3 +13,6 @@ dark mode also available
 used SQL for live chat sharing.
 
 Libreries used so far :- **kivy, android, kivymd, sqlite3, webbrowser, Pillow, multiprocessing, jnius, pymysql, kivyauth**
+
+app_0-2_armeabi_v7a_release.apk is old app which is working version from 2020
+app_0-3_armeabi_v7a_release.apk is working app 2023
