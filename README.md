@@ -9,6 +9,10 @@ main.py is old version main new.py is updated version working 2025.
 
 
 
+https://github.com/user-attachments/assets/beb0f2bd-0284-42e5-b5c7-91deb415ba27
+
+
+
 The app mainly uses Kivy and Kivymd, and I also used jnius for Java support.
 Features:-
 google login
